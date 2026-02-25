@@ -22,7 +22,7 @@ class CountriesService extends Component
      * @throws CountryLoaderException
      * FIXME: Remove firstParameter and always return an array of NormalizedCountry instances
      */
-    public function getCountries(bool $asKeyValArray = false, string $language = null): array
+    public function getCountries(bool $asKeyValArray = false, ?string $language = null): array
     {
         //Fetch all countries
         $dataCountries = CountryLoader::countries(true, true);
@@ -62,7 +62,7 @@ class CountriesService extends Component
      * @return null|CountryModel
      * @throws CountryLoaderException
      */
-    public function getCountryByISO(string $iso2, string $language = null): ?CountryModel
+    public function getCountryByISO(string $iso2, ?string $language = null): ?CountryModel
     {
         if ($language === null) {
             $language = Craft::$app->getLocale()->getLanguageID();

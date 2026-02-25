@@ -17,7 +17,6 @@ use lhs\craft\localeSelectorField\models\CountryModel;
 use lhs\craft\localeSelectorField\Plugin;
 use Rinvex\Country\CountryLoaderException;
 use yii\db\Schema;
-use function Arrayy\array_first;
 
 /**
  * This field allows a selection from a configured set of sites.
@@ -50,9 +49,9 @@ class LocalesSelectorField extends Field implements PreviewableFieldInterface
 
     /**
      * @inheritdoc
-     * @see craft\base\Field
+     * @see craft\base\FieldInterface
      */
-    public function getContentColumnType(): string
+    public static function dbType(): array|string|null
     {
         return Schema::TYPE_TEXT;
     }
@@ -102,7 +101,7 @@ class LocalesSelectorField extends Field implements PreviewableFieldInterface
      * @throws Exception
      * @see craft\base\Field
      */
-    public function getInputHtml($value, ElementInterface $element = null): string
+    public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         /**
          * Retrieve useful data according to the type
@@ -169,7 +168,7 @@ class LocalesSelectorField extends Field implements PreviewableFieldInterface
      * @return array|mixed|CountryModel|void|null
      * @throws Exception
      */
-    public function normalizeValue(mixed $value, ElementInterface $element = null): mixed
+    public function normalizeValue(mixed $value, ?ElementInterface $element = null): mixed
     {
         if (is_null($value)) {
             return null;
@@ -200,7 +199,7 @@ class LocalesSelectorField extends Field implements PreviewableFieldInterface
      * @return string|null
      * @throws Exception
      */
-    public function serializeValue(mixed $value, ElementInterface $element = null): ?string
+    public function serializeValue(mixed $value, ?ElementInterface $element = null): ?string
     {
         return match ($this->datatype) {
             Plugin::DATATYPE_SITES => ($value instanceof Site) ? $value->handle : null,
@@ -240,7 +239,7 @@ class LocalesSelectorField extends Field implements PreviewableFieldInterface
             return;
         }
 
-        if (count($this->whitelistedSites) && array_first($this->whitelistedSites) === '*') {
+        if (count($this->whitelistedSites) && reset($this->whitelistedSites) === '*') {
             return;
         }
 
@@ -328,7 +327,7 @@ class LocalesSelectorField extends Field implements PreviewableFieldInterface
 
     public function beforeSave(bool $isNew): bool
     {
-        if (is_array($this->whitelistedSites) && count($this->whitelistedSites) === 1 && array_first($this->whitelistedSites) === '*') {
+        if (is_array($this->whitelistedSites) && count($this->whitelistedSites) === 1 && reset($this->whitelistedSites) === '*') {
             $this->whitelistedSites = '*';
         }
 
