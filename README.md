@@ -1,16 +1,16 @@
 # Craft - Locale selector
 
-This plugin adds a new "Country or Site" field type to the Craft CMS. 
+This plugin adds a new "Country or Site" field type to the Craft CMS.
 The Country or site field allows content editors to choose from a list of link types and offers individual input fields for each of them.
 
 ## Requirements
 
-This plugin requires Craft CMS 4.0.0 or later.
+This plugin requires Craft CMS 5.0.0 or later and PHP 8.2+.
 
 
 ## Installation
 
-The plugin can be installed from the integrated plugin store by searching for 
+The plugin can be installed from the integrated plugin store by searching for
 "Locale selector" or using Composer:
 1. Open your terminal and navigate to your Craft project:
     ```shell
@@ -29,8 +29,8 @@ The plugin can be installed from the integrated plugin store by searching for
 
 ## Usage
 
-After the plugin has been installed, "Country or site" fields can be created 
-using the field settings within the control panel. 
+After the plugin has been installed, "Country or site" fields can be created
+using the field settings within the control panel.
 All field settings can be found within the field manager.
 
 
@@ -38,15 +38,15 @@ All field settings can be found within the field manager.
 
 ### Countries
 
-Country fields can be rendered directly in Twig, they return the localized name 
-of the selected country. 
+Country fields can be rendered directly in Twig, they return the localized name
+of the selected country.
 
 ```twig
 {{ entry.myCountryField }}
 ```
 
-The field value is actually an instance of 
-`\lhs\craft\localeSelectorField\models\CountryModel` which exposes additional 
+The field value is actually an instance of
+`\lhs\craft\localeSelectorField\models\CountryModel` which exposes additional
 properties and methods that can be used in templates.
 
 ### Sites
@@ -77,7 +77,7 @@ Sites expose the following properties:
 
 ### Countries
 
-Countries expose the following properties: 
+Countries expose the following properties:
 
 - `name` - `[string]`: The localized name of the country
 - `nativeName` - `[string]`: The name of the country, in the country main language
