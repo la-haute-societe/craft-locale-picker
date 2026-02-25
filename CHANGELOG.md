@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Updated Craft CMS requirement to `^5.0.0`
+- Replaced `getContentColumnType()` with static `dbType()` method (Craft 5 API)
+- Replaced `Arrayy\array_first()` with native PHP `reset()` (`voku/arrayy` package removed in Craft 5)
 
 ## [1.0.0] - 2022-08-25
 ### Added
